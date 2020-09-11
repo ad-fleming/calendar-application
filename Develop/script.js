@@ -5,24 +5,55 @@ console.log("hello world");
 // =====================Define global variables=========================
 // =====================================================================
 var timesArray = [
-    "9 AM", 
-    "10 AM",
-    "11 AM", 
-    "12 AM", 
-    "1 PM", 
-    "2 PM",
-    "3 PM", 
-    "4 PM",
-    "5 PM"
+    moment('9:00 AM', 'hh:mm A'), 
+    moment('10:00 AM', 'hh:mm A'), 
+    moment('11:00 AM', 'hh:mm A'), 
+    moment('12:00 PM', 'hh:mm A'), 
+    moment('1:00 PM', 'hh:mm A'), 
+    moment('2:00 PM', 'hh:mm A'), 
+    moment('3:00 PM', 'hh:mm A'),
+    moment('4:00 PM', 'hh:mm A'),
+    moment('5:00 PM', 'hh:mm A'),
+    
 ]
+console.log(timesArray);
 // Current Day Display at the top of Screen
 var currentDayEl = $("#currentDay");
 var calendarContainerEl = $(".calendarContainer");
+var currentTimeEl = $("#currentTimeEl");
+var m = moment();
 
 // ========================Set currentDayEl using momentjs=============
 // ====================================================================
-var currentDate = moment().format('dddd, MMMM Do');
+var currentDate = m.format('dddd, MMMM Do');
 currentDayEl.text(currentDate);
+
+// ======================Set a current time variable to reference for time-block
+// ===========================================================================
+var currentTime = m.format('LTS'); 
+
+setInterval(function(){
+var now = moment();
+var readableTime = now.format('hh:mm:ss A');
+currentTimeEl.text(readableTime);
+},1000);
+
+
+// ======================= Write a function to assign past, present or future classes to the time blocks=====================
+// ================================================================================================================================
+// function Testing(){
+//     var tester = moment()
+//     var hourtest = tester.format('hh')
+//     console.log("this is tester " + hourtest)
+//     if (timesArray[i].isBefore(hourtest)){
+//         calRow.attr("class", "past");
+//     }else if (timesArray[i].isAfter(hourtest)){
+//         calRow.attr("class", "future");
+//     }else{
+//         calRow.attr("class", "present");
+//     }
+// }
+
 
 
 
@@ -39,8 +70,8 @@ for (var i =0; i < timesArray.length; i++){
     var hourLabel = $("<div>");
     // 2.1) set attribute on that div to give it a class = "col-sm-1 hour"
     hourLabel.attr("class", "col-sm-1 hour");
-    // 2.2) set the text value of that div to equal to timesArray[i]
-    hourLabel.text(timesArray[i]);
+    // 2.2) set the text value of that div to equal to timesArray[i]._1 (Because turning them into moments, turns them into objects)
+    hourLabel.text(timesArray[i]._i);
 // 3) create a text area element and assign it to a variable of textArea
     var textArea = $("<textarea>");
     // 3.1) set attribute on that text area to give it a class = "col-sm-10 description"
@@ -61,11 +92,11 @@ for (var i =0; i < timesArray.length; i++){
     calRow.append(saveButton);
 // 8) Append the row to the calendarContainerEl(defined in global)
     calendarContainerEl.append(calRow);
+
 }
 // ============================ Loop End ===============================
 // ====================================================================
     
-
 
 
 
