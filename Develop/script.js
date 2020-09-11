@@ -5,23 +5,30 @@ console.log("hello world");
 // =====================Define global variables=========================
 // =====================================================================
 var timesArray = [
-    moment('9:00 AM', 'hh:mm A'), 
-    moment('10:00 AM', 'hh:mm A'), 
-    moment('11:00 AM', 'hh:mm A'), 
-    moment('12:00 PM', 'hh:mm A'), 
-    moment('1:00 PM', 'hh:mm A'), 
-    moment('2:00 PM', 'hh:mm A'), 
-    moment('3:00 PM', 'hh:mm A'),
-    moment('4:00 PM', 'hh:mm A'),
-    moment('5:00 PM', 'hh:mm A'),
+    moment('9:00 AM', 'h A'), 
+    moment('10:00 AM', 'h A'), 
+    moment('11:00 AM', 'h A'), 
+    moment('12:00 PM', 'h A'), 
+    moment('1:00 PM', 'h A'), 
+    moment('2:00 PM', 'h A'), 
+    moment('3:00 PM', 'h A'),
+    moment('4:00 PM', 'h A'),
+    moment('5:00 PM', 'h A'),
     
 ]
+
+var timeAssignment = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+
 console.log(timesArray);
 // Current Day Display at the top of Screen
 var currentDayEl = $("#currentDay");
 var calendarContainerEl = $(".calendarContainer");
 var currentTimeEl = $("#currentTimeEl");
 var m = moment();
+console.log(m);
+var now = moment();
+var nowHours = now.format('h z')
 
 // ========================Set currentDayEl using momentjs=============
 // ====================================================================
@@ -39,21 +46,22 @@ currentTimeEl.text(readableTime);
 },1000);
 
 
-// ======================= Write a function to assign past, present or future classes to the time blocks=====================
-// ================================================================================================================================
-// function Testing(){
-//     var tester = moment()
-//     var hourtest = tester.format('hh')
-//     console.log("this is tester " + hourtest)
-//     if (timesArray[i].isBefore(hourtest)){
-//         calRow.attr("class", "past");
-//     }else if (timesArray[i].isAfter(hourtest)){
-//         calRow.attr("class", "future");
-//     }else{
-//         calRow.attr("class", "present");
-//     }
-// }
+//  =================== set item to local storage ==================================
+// =================================================================================
+$(document).on("click", ".saveBtn",function() {
+    console.log("hello");
+                        // =====key===============      ================value==================
+    localStorage.setItem($(this).parent().attr('id'), $(this).siblings(".description").val().trim());
+});
 
+function getStorage(){
+var storageKeys = Object.keys(localStorage)
+
+for (var i = 0; i < storageKeys.length; i++){
+    var savedText = localStorage.getItem(storageKeys[i]);
+    $("#" + storageKeys[i].toString()).children(".description").val(savedText);
+};
+}
 
 
 
@@ -66,6 +74,8 @@ for (var i =0; i < timesArray.length; i++){
     var calRow = $("<row>");
     // 1.1) set attribute on that row to give it a class=" row time-block
     calRow.attr("class", "row  time-block");
+    // Assign time assignment
+    calRow.attr("id", timeAssignment[i]);
 // 2)create a div el and assign it to a variable of hourLabel
     var hourLabel = $("<div>");
     // 2.1) set attribute on that div to give it a class = "col-sm-1 hour"
@@ -78,6 +88,7 @@ for (var i =0; i < timesArray.length; i++){
     textArea.attr("class", "col-sm-10 description");
     // 3.2) ==optional=== set an attribute to give that text area a placeholder text of "enter calendar item here"
     textArea.attr("placeholder", "What's on the schedule?");
+    // 3.3) TODO:set a data attribute equal to the current iteration????
 // 4) create a button element and assign it to a variable of saveButton
     var saveButton = $("<button>");
     // 4.1)set attributes on the button to give it a class="col-sm-1 saveBtn" TODO:Possibly add additional class for Font Awesome Icon
@@ -92,11 +103,21 @@ for (var i =0; i < timesArray.length; i++){
     calRow.append(saveButton);
 // 8) Append the row to the calendarContainerEl(defined in global)
     calendarContainerEl.append(calRow);
-
+    
+    if(timeAssignment[i] < moment().format('H')){
+        calRow.addClass("past");
+    }else if(timeAssignment[i]> moment().format('H')){
+        calRow.addClass("future");
+    }else{
+        calRow.addClass("present");
+    }
+    getStorage();
 }
 // ============================ Loop End ===============================
 // ====================================================================
     
+
+
 
 
 
