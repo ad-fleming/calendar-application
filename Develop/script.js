@@ -17,18 +17,19 @@ var timesArray = [
     
 ]
 
+// Used to create id tags that match current time to use for local storage
 var timeAssignment = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-
-console.log(timesArray);
 // Current Day Display at the top of Screen
 var currentDayEl = $("#currentDay");
 var calendarContainerEl = $(".calendarContainer");
 var currentTimeEl = $("#currentTimeEl");
 var m = moment();
-console.log(m);
 var now = moment();
 var nowHours = now.format('h z')
+
+
+
 
 // ========================Set currentDayEl using momentjs=============
 // ====================================================================
@@ -54,7 +55,11 @@ $(document).on("click", ".saveBtn",function() {
     localStorage.setItem($(this).parent().attr('id'), $(this).siblings(".description").val().trim());
 });
 
+
+// ====================== write a function for checking local storage. Abstract it to include it into the loop that renders the page========
+// =====================================================================================================================
 function getStorage(){
+// Object.keys(objectName) returns an array of keys
 var storageKeys = Object.keys(localStorage)
 
 for (var i = 0; i < storageKeys.length; i++){
@@ -118,21 +123,3 @@ for (var i =0; i < timesArray.length; i++){
     
 
 
-
-
-
-
-
-// GIVEN I am using a daily planner to create a schedule
-// WHEN I open the planner
-// THEN the current day is displayed at the top of the calendar
-// WHEN I scroll down
-// THEN I am presented with timeblocks for standard business hours
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-// WHEN I click into a timeblock
-// THEN I can enter an event
-// WHEN I click the save button for that timeblock
-// THEN the text for that event is saved in local storage
-// WHEN I refresh the page
-// THEN the saved events persist
