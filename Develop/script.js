@@ -17,7 +17,8 @@ var timesArray = [
     
 ]
 
-// Used to create id tags that match current time to use for local storage
+// Used to create id tags that match current timeblock to use for local storage key matches
+// Also used to tell within the loop how to color code accordingly
 var timeAssignment = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 // Current Day Display at the top of Screen
@@ -64,6 +65,7 @@ var storageKeys = Object.keys(localStorage)
 
 for (var i = 0; i < storageKeys.length; i++){
     var savedText = localStorage.getItem(storageKeys[i]);
+    // id = # +(the converted string of the storageKey[i] child with a class of "description").(assign a value of the saved text)
     $("#" + storageKeys[i].toString()).children(".description").val(savedText);
 };
 }
@@ -116,6 +118,7 @@ for (var i =0; i < timesArray.length; i++){
     }else{
         calRow.addClass("present");
     }
+    // This must be run within the loop because content is being dynamically generated
     getStorage();
 }
 // ============================ Loop End ===============================
