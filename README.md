@@ -40,6 +40,16 @@ By implementing Moment.js into my code I was able to assign meaningful time data
 #### Demo of working Webpage
 ![My Day Planner Demo](./Assets/my-work-day-scheduler.gif)
 
+## Credits
+
+I worked on this project with the collaboration of fellow students of the Georgia Tech Coding Boot Camp.
+
+Additionally, I referenced sites such as:
+
+![W3Schools](https://www.w3schools.com/)
+![MDN](https://developer.mozilla.org/)
+![Momentjs](https://momentjs.com)
+
 
 ## Links
 
