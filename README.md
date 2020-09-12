@@ -23,7 +23,7 @@ THEN the saved events persist
 ```
 
 The following animation demonstrates the application functionality:
-![Day Planner Demo](Assets/05-third-party-apis-homework-demo.gif)
+![Day Planner Demo](./Assets/05-third-party-apis-homework-demo.gif)
 
 ## Challenges 
 This homework was fairly streamline, but presented interesting challenges in regard to local storage and using new libraries. 
@@ -33,9 +33,9 @@ By implementing Moment.js into my code I was able to assign meaningful time data
 
 ### Picture of working Web Page
 
-![Working Day Planner](Assets/Working WebPage.png);
-
-
+![My Day Planner](./Assets/working-page.png)
+<br>
+![My Day Planner Demo](./Assets/my-work-day-scheduler.gif)
 
 
 ## Links
