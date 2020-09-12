@@ -46,9 +46,9 @@ I worked on this project with the collaboration of fellow students of the Georgi
 
 Additionally, I referenced sites such as:
 
-![W3Schools](https://www.w3schools.com/)
-![MDN](https://developer.mozilla.org/)
-![Momentjs](https://momentjs.com)
+[W3Schools](https://www.w3schools.com/)
+[MDN](https://developer.mozilla.org/)
+[Momentjs](https://momentjs.com)
 
 
 ## Links
