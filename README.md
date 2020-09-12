@@ -33,8 +33,11 @@ By implementing Moment.js into my code I was able to assign meaningful time data
 
 ### Picture of working Web Page
 
+#### Screenshot of Webpage
 ![My Day Planner](./Assets/working-page.png)
-<br>
+
+
+#### Demo of working Webpage
 ![My Day Planner Demo](./Assets/my-work-day-scheduler.gif)
 
 
